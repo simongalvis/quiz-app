@@ -4,6 +4,8 @@
 
 h1 {
     margin-bottom: 5%;
+    margin-top: 5%;
+    font-size: auto;
 }
 
 section {
@@ -24,9 +26,32 @@ li {
 }
 
 form {
-    display: block;
+    display: flex;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+}
+
+.startQuiz,
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin: auto;
+    padding: 1em;
+    border: 0.1em #371d0d solid;
+    background-color: #ffd700;
+    width: 80%;
 }
 
 .center {
     text-align: center;
+}
+
+.container {
+    width: auto;
 }
