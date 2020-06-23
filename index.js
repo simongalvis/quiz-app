@@ -89,8 +89,17 @@ let questionNumber = 0;
 
 //begins the quiz
 function beginQuiz() {
+
+    $('.altBox').hide();
+    $('.start').on('click', '.startButton', function(event) {
+        $('.start').hide('questionContainer');
+        $('.questionNumber').text(1);
+        $('.questionContainer').show();
+        $('.questionContainer').prepend(renderQuestion());
+    });
     console.log('`beginQuiz` executed')
 }
+
 
 //generates quiz questions
 function renderQuestion() {

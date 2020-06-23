@@ -4,8 +4,13 @@
 
 h1 {
     margin-bottom: 5%;
-    margin-top: 5%;
-    font-size: auto;
+    margin-top: 2.5%;
+    font-size: 77px;
+}
+
+h2 {
+    margin: 2%;
+    font-size: 42px;
 }
 
 section {
@@ -21,17 +26,22 @@ ul {
 }
 
 li {
-    display: inline;
     margin: 0px 21px;
+    width: 100%;
+    display: inline-flex;
 }
 
 form {
-    display: flex;
+    display: inline-block;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
 }
 
 img {
     height: 100%;
-    width: 100%;
+    width: 90%;
+    margin: 5%;
 }
 
 .startQuiz,
@@ -46,6 +56,16 @@ img {
     border: 0.1em #371d0d solid;
     background-color: #ffd700;
     width: 80%;
+    height: 100%;
+}
+
+.box {
+    background-image: url('images/tennis-background.jpg');
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 10%;
+    background-attachment: fixed;
+    border-radius: 1%;
 }
 
 .center {
@@ -54,4 +74,14 @@ img {
 
 .container {
     width: auto;
+}
+
+.questionContainer {
+    background-color: aliceblue;
+    height: 100%;
+    width: 55%;
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }

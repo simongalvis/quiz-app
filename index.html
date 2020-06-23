@@ -7,7 +7,8 @@
     <meta name="description" content="HTML, CSS & JS Quiz">
     <title>Quiz App</title>
     <link rel="shortcut icon" href="#">
-    <link href="float-grid.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
     <link href="main.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -17,27 +18,46 @@
         <h1 class="center">Tennis Trivia</h1>
         <div>
             <ul>
-                <li>Question: /10</li>
-                <li>Score: </li>
+                <li>Question: <span class="questionNumber">  0</span>/10</li>
+                <li>Score: <span class="score">0</span></li>
             </ul>
         </div>
     </header>
 
     <main>
-        <section>This is da main section
-            <form>
-                <p>Question: </p>
-                <input name="color" type="radio" value="red">
-                <label for="red">Red</label><br>
-                <input name="color" type="radio" value="red">
-                <label for="red">Red</label><br>
-                <input name="color" type="radio" value="red">
-                <label for="red">Red</label><br>
-                <input name="color" type="radio" value="red">
-                <label for="red">Red</label>
-            </form>
-    </main>
-    </section>
+        <section class="box">
+
+
+            <div class=' questionContainer start'>
+                <h2>How much do you know about tennis?</h2>
+
+                <img src="images/michael-chang.jpg" alt='michael-chang-image'>
+
+                <button type="button" class="startButton">Start</button>
+
+
+            </div>
+
+
+            <div class='questionContainer altBox'>
+                <h2>[Insert question here]</h2>
+
+
+                <form>
+
+                    <input name="color" type="radio" value="red">
+                    <label for="red">Red</label><br>
+                    <input name="color" type="radio" value="red">
+                    <label for="red">Red</label><br>
+                    <input name="color" type="radio" value="red">
+                    <label for="red">Red</label><br>
+                    <input name="color" type="radio" value="red">
+                    <label for="red">Red</label>
+                </form>
+            </div>
+
+
+        </section>
 
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
