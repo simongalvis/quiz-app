@@ -96,6 +96,7 @@ function beginQuiz() {
         $('.questionNumber').text(1);
         $('.questionContainer').show();
         $('.questionContainer').prepend(renderQuestion());
+        nextQuestion();
     });
     console.log('`beginQuiz` executed')
 }
@@ -162,7 +163,7 @@ function incorrectResponse() {
     console.log('`incorrectResponse` executed')
     $('.response').html(
         `<h3>That's the wrong answer...</h3>
-        <img src="images/wrong.jpg" alt="dissapointed monkey face" class="images" width="200px">
+        <img src="images/you-cannot-be-serious.jpg" alt="angry-tennis-player" class="images" width="200px">
         <p class="sizeMe">It's actually:</p>
         <p class="sizeMe">${STORE[questionNumber].correctAnswer}</p>
         <button type="button" class="nextButton button">Next</button>`
@@ -175,8 +176,8 @@ function correctResponse() {
 
     $('.response').html(
         `<h3>Your answer is correct!</h3>
-        <img src="images/correct.jpg" alt="monkey wearing glasses" class="images" width="200px">
-          <p class="sizeMe">You're a smart monkey!</p>
+        <img src="images/vamos-rafa.jpg" alt="Rafael Nadal fist pump" class="images" width="200px">
+          <p class="sizeMe">You got it right! Vamos!</p>
           <button type="button" class="nextButton button">Next</button>`
     );
     updateScore();
@@ -191,11 +192,12 @@ function correctResponse() {
 function nextQuestion() {
     console.log('`nextQuestion` executed')
 
-    $('.jungleBox').on('click', '.nextButton', function(event) {
+    $('.submitButton').on('click', function(event) {
+        event.preventDefault();
         $('.altBox').hide();
         $('.questionBox').show();
         updateQuestionNumber();
-        $('.questionBox form').replaceWith(generateQuestion());
+        $('.questionBox form').replaceWith(renderQuestion());
     })
 };
 
@@ -223,6 +225,8 @@ function createQuiz() {
     updateScore();
     updateQuestionNumber();
     resetStats();
+
+    createForm();
 
 }
 
