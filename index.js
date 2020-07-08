@@ -79,155 +79,187 @@ const STORE = [{
         ],
         correctAnswer: 'Rafael Nadal'
     }
-]
+];
 
-
-//Variables containing information on the current score and question number;
+//variables to store the quiz score and question number information
 let score = 0;
 let questionNumber = 0;
 
-
-//begins the quiz
-function beginQuiz() {
-
-    $('.altBox').hide();
-    $('.start').on('click', '.startButton', function(event) {
-        $('.start').hide('questionContainer');
-        $('.questionNumber').text(1);
-        $('.questionContainer').show();
-        $('.questionContainer').prepend(renderQuestion());
-        nextQuestion();
-    });
-    console.log('`beginQuiz` executed')
+//template to generate each question
+function generateQuestion() {
+  if (questionNumber < STORE.length) {
+    return createThing(questionNumber);
+  } else {
+    $('.questionBox').hide();
+    finalScore();
+    $('.questionNumber').text(8);
+  }
 }
 
+//increments the number value of the "score" variable by one
+//and updates the "score" number text in the quiz view
+function updateScore() {
+  score++;
+  $('.score').text(score);
+}
 
-//generates quiz questions
-function renderQuestion() {
-    if (questionNumber < STORE.length) {
-        return createForm(questionNumber)
+//increments the number value of the "question number" variable by one
+//and updates the "question number" text in the quiz view
+function updateQuestionNumber() {
+  questionNumber++;
+  $('.questionNumber').text(questionNumber + 1);
+}
+
+//resets the text value of the "question number" and "score" variables
+//and updates their repective text in the quiz view
+function resetStats() {
+  score = 0;
+  questionNumber = 0;
+  $('.score').text(0);
+  $('.questionNumber').text(0);
+}
+
+//begins the quiz
+function startQuiz() {
+  $('.altBox').hide();
+  $('.startQuiz').on('click', '.startButton', function (event) {
+    $('.startQuiz').hide();
+    $('.questionNumber').text(1);
+    $('.questionBox').show();
+    $('.questionBox').prepend(generateQuestion());
+  });
+}
+
+//submits a selected answer and checks it against the correct answer
+//runs answer functions accordingly
+function submitAnswer() {
+  $('.stadiumBox').on('submit', function (event) {
+    event.preventDefault();
+    $('.altBox').hide();
+    $('.response').show();
+    let selected = $('input:checked');
+    let answer = selected.val();
+    let correct = STORE[questionNumber].correctAnswer;
+    if (answer === correct) {
+      correctAnswer();
     } else {
-        $('.questionBox').hide();
-        finalScore();
-        $('.questionNumber').text(10);
+      wrongAnswer();
     }
-
-
-    console.log('`renderQuestion` executed');
+  });
 }
 
 //creates html for question form
-function createForm(questionIndex) {
-    let formMaker = $(`<form>
+function createThing(questionIndex) {
+  let formMaker = $(`<form>
     <fieldset>
       <legend class="questionText">${STORE[questionIndex].question}</legend>
     </fieldset>
   </form>`)
 
-    let fieldSelector = $(formMaker).find('fieldset');
+  let fieldSelector = $(formMaker).find('fieldset');
 
-    STORE[questionIndex].answers.forEach(function(answerValue, answerIndex) {
-        $(`<label class="sizeMe" for="${answerIndex}">
+  STORE[questionIndex].answers.forEach(function (answerValue, answerIndex) {
+    $(`<label class="sizeMe" for="${answerIndex}">
         <input class="radio" type="radio" id="${answerIndex}" value="${answerValue}" name="answer" required>
         <span>${answerValue}</span>
       </label>
       `).appendTo(fieldSelector);
-    });
-    $(`<button type="submit" class="submitButton button"> Submit</button > `).appendTo(fieldSelector);
-    return formMaker;
-}
-//increases value of the score variable by one and updates the score on the quiz view
-function updateScore() {
-    score++;
-    $('.score').text(score);
-    console.log('`updateScore` executed');
+  });
+  $(`<button type="submit" class="submitButton button"> Submit</button > `).appendTo(fieldSelector);
+  return formMaker;
 }
 
-//increases value of the questionNumber variable by one and updates the questionNumber on the quiz view
-function updateQuestionNumber() {
-    questionNumber++;
-    $('.questionNumber').text(questionNumber);
-    console.log('`updateQuestionNumber` executed');
+//resulting feedback if a selected answer is correct
+//increments user score by one
+function correctAnswer() {
+  $('.response').html(
+    `<h3>Your answer is correct... Vamos!</h3>
+    <img src="images/correct.jpg" alt="rafeal-nadal-fist-pump" class="images" width="200px">
+      <p class="sizeMe">On to your next question!</p>
+      <button type="button" class="nextButton button">Next</button>`
+  );
+  updateScore();
 }
 
-//resets all quiz stats to set them up for a new attempt of the quiz
-function resetStats() {
-    score = 0;
-    questionNumber = 0;
-    $('.score').text(0);
-    $('.questionNumber').text(0);
+//resulting feedback if a selected answer is incorrect
+function wrongAnswer() {
+  $('.response').html(
+    `<h3>That's the wrong answer... <b>You cannot be serious!</b></h3>
+    <img src="images/wrong.jpg" alt="dissapointed monkey face" class="images" width="200px">
+    <p class="sizeMe">It's actually:</p>
+    <p class="sizeMe">${STORE[questionNumber].correctAnswer}</p>
+    <button type="button" class="nextButton button">Next</button>`
+  );
 }
 
-//creates feedback corresponding to an incorrect submission
-function incorrectResponse() {
-    console.log('`incorrectResponse` executed')
-    $('.response').html(
-        `<h3>That's the wrong answer...</h3>
-        <img src="images/you-cannot-be-serious.jpg" alt="angry-tennis-player" class="images" width="200px">
-        <p class="sizeMe">It's actually:</p>
-        <p class="sizeMe">${STORE[questionNumber].correctAnswer}</p>
-        <button type="button" class="nextButton button">Next</button>`
-    );
-
-}
-
-//creates feedback corresponding to a correct submission and updates the score
-function correctResponse() {
-
-    $('.response').html(
-        `<h3>Your answer is correct!</h3>
-        <img src="images/vamos-rafa.jpg" alt="Rafael Nadal fist pump" class="images" width="200px">
-          <p class="sizeMe">You got it right! Vamos!</p>
-          <button type="button" class="nextButton button">Next</button>`
-    );
-    updateScore();
-
-
-
-    console.log('`correctResponse` executed')
-
-
-}
-
+//generates the next question
 function nextQuestion() {
-    console.log('`nextQuestion` executed')
-
-    $('.submitButton').on('click', function(event) {
-        event.preventDefault();
-        $('.altBox').hide();
-        $('.questionBox').show();
-        updateQuestionNumber();
-        $('.questionBox form').replaceWith(renderQuestion());
-    })
-};
-
-function finalScore() {
-
-}
-
-
-//takes user to starting view to restart the quiz
-function restartQuiz() {
-    function restartQuiz() {
-        $('.jungleBox').on('click', '.restartButton', function(event) {
-            event.preventDefault();
-            resetStats();
-            $('.altBox').hide();
-            $('.startQuiz').show();
-        });
-    }
-
-}
-//runs functions
-function createQuiz() {
-    beginQuiz();
-    renderQuestion();
-    updateScore();
+  $('.stadiumBox').on('click', '.nextButton', function (event) {
+    $('.altBox').hide();
+    $('.questionBox').show();
     updateQuestionNumber();
-    resetStats();
-
-    createForm();
-
+    $('.questionBox form').replaceWith(generateQuestion());
+  });
 }
 
-$(createQuiz);
+//determines final score and feedback at the end of the quiz
+function finalScore() {
+  $('.final').show();
+
+  const great = [
+    'Game. Set. Match!',
+    'images/great.jpg',
+    'Nadal lifting trophy',
+    "Perfect score... You're a true champion!"
+  ];
+
+  const good = [
+    'Good, not great.',
+    'images/good.jpg',
+    'Roddick fist pump',
+    "You're almost a tennis expert..."
+  ];
+
+  const bad = [
+    'Still a rookie?',
+    'images/end.jpg',
+    'baghdatis racquet smash',
+    'Everyone starts somewhere!'
+  ];
+
+  if (score >= 7) {
+    array = great;
+  } else if (score < 7 && score >= 5) {
+    array = good;
+  } else {
+    array = bad;
+  }
+  return $('.final').html(
+    `<h3>${array[0]}</h3>
+      <img src="${array[1]}" alt="${array[2]}" class="images">
+        <h3>Your score is ${score} / 8</h3>
+        <p class="sizeMe">${array[3]}</p>
+        <button type="submit" class="restartButton button">Restart</button>`
+  );
+}
+
+//takes user back to the starting view to restart the quiz
+function restartQuiz() {
+  $('.stadiumBox').on('click', '.restartButton', function (event) {
+    event.preventDefault();
+    resetStats();
+    $('.altBox').hide();
+    $('.startQuiz').show();
+  });
+}
+
+//runs the functions
+function makeQuiz() {
+  startQuiz();
+  generateQuestion();
+  submitAnswer();
+  nextQuestion();
+  restartQuiz();
+}
+
+$(makeQuiz);
