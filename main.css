@@ -1,87 +1,212 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 1%;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@700&display=swap');
+
+
+body {
+  font-family: 'Inconsolata', monospace;
+  text-transform: uppercase;
+  color: #371d0d;
+  background-color: hsl(194, 69%, 42%);
 }
 
-h1 {
-    margin-bottom: 5%;
-    margin-top: 2.5%;
-    font-size: 77px;
+.header {
+  text-align: center;
 }
 
-h2 {
-    margin: 2%;
-    font-size: 42px;
+.topRacquet {
+  max-width: 15em;
 }
 
-section {
-    border: solid 1px gray;
-    text-align: center;
-    height: 333px;
+.header li {
+  display: inline-block;
+  margin: 1em;
+  list-style: none;
+  font-size: 1.3em;
 }
 
-ul {
-    display: inline-flex;
-    margin-bottom: 5%;
-    border: solid 1px gray;
-}
-
-li {
-    margin: 0px 21px;
-    width: 100%;
-    display: inline-flex;
-}
-
-form {
-    display: inline-block;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-}
-
-img {
-    height: 100%;
-    width: 90%;
-    margin: 5%;
+.stadiumBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3em;
+  background: url(images/background.jpg) fixed;
+  border: 0.1em #371d0d solid;
 }
 
 .startQuiz,
 .box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-    margin: auto;
-    padding: 1em;
-    border: 0.1em #371d0d solid;
-    background-color: #ffd700;
-    width: 80%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin: auto;
+  padding: 1em;
+  border: 0.1em #371d0d solid;
+  background-color: hsl(194, 69%, 42%);
 }
 
-.box {
-    background-image: url('images/tennis-background.jpg');
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 10%;
-    background-attachment: fixed;
-    border-radius: 1%;
+label {
+  display: block;
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  cursor: pointer;
 }
 
-.center {
-    text-align: center;
+.images {
+  margin-bottom: 0.5em;
+  width: 90%;
+  max-width: 240px;
 }
 
-.container {
-    width: auto;
+h1,
+h3,
+legend {
+  margin-bottom: 0.5em;
 }
 
-.questionContainer {
-    background-color: aliceblue;
-    height: 100%;
-    width: 55%;
-    margin: 5%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+.answerOption {
+  margin-top: 0.5em;
+}
+
+.button {
+  margin-left: auto;
+  margin-right: auto;
+  height: 3em;
+  cursor: pointer;
+  font-family: 'Inconsolata', monospace;
+  text-transform: uppercase;
+  border: 0.1em #07773e solid;
+  background-color: #07773e;
+  color: #ffffff;
+}
+
+.button:hover,
+.button:active {
+  background-color: #371d0d;
+  color: #ffd700;
+  border: 0.1em #371d0d solid;
+}
+
+.final {
+  display: block;
+}
+
+@media only screen and (min-width: 320px) {
+  .topRacquet {
+    width: 45%;
+  }
+
+  .stadiumBox {
+    width: 90%;
+    height: 31em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+  }
+
+  .box {
+    width: 90%;
+    height: 90%;
+  }
+
+  .images {
+    width: 85%;
+  }
+
+  .button {
+    margin-top: 0.5em;
+    font-size: 1em;
+    width: 8em;
+    height: 2.5em;
+  }
+
+  h1,
+  h3,
+  legend {
+    font-size: 1em;
+  }
+
+  .header li {
+    font-size: 1em;
+  }
+
+  .sizeMe {
+    font-size: 0.9em;
+    margin: 0.1em;
+  }
+}
+
+@media only screen and (min-width: 550px) {
+  .stadiumBox {
+    width: 29.5em;
+    height: 31.5em;
+    padding-top: 2.6em;
+    padding-bottom: 2.6em;
+  }
+
+  .box {
+    width: 85%;
+    height: 98%;
+  }
+
+  .button {
+    margin-top: 1em;
+    font-size: 1em;
+    width: 10em;
+    height: 2.5em;
+  }
+
+  h1,
+  h3,
+  legend {
+    font-size: 1em;
+  }
+
+  .sizeMe {
+    font-size: 0.9em;
+  }
+}
+
+@media only screen and (min-width: 800px) {  
+  .header li {
+    margin: 1em;
+    font-size: 1.3em;
+  }
+
+  .jungleBox {
+    width: 35em;
+    height: 38em;
+  }
+
+  .box {
+    width: 85%;
+    height: 95%;
+  }
+
+  h1,
+  h3,
+  legend {
+    font-size: 1.3em;
+  }
+
+  .sizeMe {
+    font-size: 1em;
+  }
+
+  .button {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 12em;
+    font-size: 1.2em;
+  }
 }
